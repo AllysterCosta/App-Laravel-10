@@ -10,8 +10,21 @@ use stdClass;
 class SupportService
 {
     public function __construct(
-        protected SupportRepositoryInterface $repository, 
-    ) {}
+        protected SupportRepositoryInterface $repository,
+    ) {
+    }
+
+    public function paginate(
+        int $page = 1,
+        int $totalPerPage = 15,
+        string $filter = null
+    ) {
+        return $this->repository->paginate(
+            page: $page,
+            totalPerPage: $totalPerPage,
+            filter: $filter
+        );
+    }
 
     public function getAll(string $filter = null): array
     {
